@@ -5,11 +5,11 @@ nodejs bindings for the cashbot.ai APIs
 
 ## Installation
 
-  `npm install cashbot-node`
+  `npm install cashbot`
 
 ## Usage
 
-    var cashbot = require('cashbot-node');
+    var cashbot = require('cashbot');
 
     var res = cashbot();
   
