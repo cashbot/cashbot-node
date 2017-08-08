@@ -1,0 +1,41 @@
+{
+  "name": "cashbot-node",
+  "version": "0.0.1",
+  "description": "nodejs bindings for the cashbot.ai APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "engines": {
+    "node": ">=4.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cashbot/cashbot-node.git"
+  },
+  "keywords": [
+    "monetization",
+    "cashbot",
+    "ai",
+    "chat",
+    "bots",
+    "chatbots",
+    "conversation",
+    "conversational",
+    "money",
+    "revenue",
+    "recommendations",
+    "service",
+    "integrations"
+  ],
+  "author": "cashbot.ai <support@cashbot.ai> (https://cashbot.ai)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cashbot/cashbot-node/issues"
+  },
+  "homepage": "https://github.com/cashbot/cashbot-node#readme",
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "mocha": "^3.5.0"
+  }
+}
