@@ -1,14 +1,17 @@
 {
   "name": "cashbot",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "nodejs bindings for the cashbot.ai APIs",
-  "main": "index.js",
+  "main": "lib/cashbot-node.js",
   "scripts": {
     "test": "mocha --reporter spec",
     "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
   },
+  "directories": {
+    "lib": "lib"
+  },
   "engines": {
-    "node": ">=4.2.4"
+    "node": ">=4.2"
   },
   "repository": {
     "type": "git",
