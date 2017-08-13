@@ -122,7 +122,8 @@ cashbot.sendUserInput('TEST_USER', { type: 'text', value: { intent: 'dummyIntent
 Tests
 -----
 
-  # These are a work in progress
+These are a work in progress
+
   npm install
   npm test
 
