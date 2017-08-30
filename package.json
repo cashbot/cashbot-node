@@ -1,6 +1,6 @@
 {
   "name": "cashbot",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "nodejs bindings for the cashbot.ai APIs",
   "main": "lib/cashbot-node.js",
   "scripts": {
