@@ -19,7 +19,7 @@ either signing up (https://cashbot.ai/signup) or e-mailing us at
 Installation
 -----------
 
-  npm install cashbot
+```npm install --save cashbot``
 
 Quick Start: Facebook Messenger
 -----------
@@ -35,16 +35,16 @@ cashbot.setConfig({ debug: true });
 // get a Facebook carousel with
 // cashbot.ai recommendations for a specific user
 // returns via callback function
-cashbot.facebook.getCarousel('TEST_USER', { n: 3, label: 'Take a Look' }, function(err, res) {
+cashbot.facebook.get('TEST_USER', { n: 3, type: 'carousel', label: 'Take a Look' }, function(err, res) {
   console.log('err: ', err);
   // returns a formatted message body
   console.log('res: ', res);
 });
 
-// get a Facebook carousel with
+// get a Facebook list with
 // cashbot.ai recommendations for a specific user
 // returns via promises
-cashbot.facebook.getCarousel('TEST_USER')
+cashbot.facebook.get('TEST_USER', { type: 'list' })
   .then(function(res) {
     // returns a formatted message body
     console.log(res);
