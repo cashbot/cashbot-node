@@ -19,7 +19,7 @@ either signing up (https://cashbot.ai/signup) or e-mailing us at
 Installation
 -----------
 
-```npm install --save cashbot``
+```npm install --save cashbot```
 
 Quick Start: Facebook Messenger
 -----------
