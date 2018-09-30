@@ -13,7 +13,7 @@ API Keys
 -----------
 
 You will need an API key to access the cashbot.ai APIs. You can request a key by
-either signing up (https://cashbot.ai/signup) or e-mailing us at
+either signing up (https://cashbot.ai/register) or e-mailing us at
 [support@cashbot.ai](mailto://support@cashbot.ai).
 
 Installation
@@ -26,46 +26,42 @@ Quick Start: Facebook Messenger
 
 ```
 // load the cashbot.ai library
+// -------------------------
 var Cashbot = require('cashbot');
 
 // initialize the cashbot client
+// -------------------------
 var cashbot = Cashbot.init('API_KEY');
+
+// optionally print debug messages, leave debug: false if you do not want debug messages
+// -------------------------
 cashbot.setConfig({ debug: true });
 
-// get a Facebook carousel with
-// cashbot.ai recommendations for a specific user
+
+// send cashbot.ai user demographic information to be used to personalize recommendations
+// get a Facebook carousel with personalized recommendations for the user
 // returns via callback function
-cashbot.facebook.get('TEST_USER', { n: 3, type: 'carousel', label: 'Take a Look' }, function(err, res) {
+
+// IT IS CRITICAL YOU REPLACE USER.ATTRIBUTE WITH YOUR USER'S INFORMATION
+// USER.ID SHOULD BE THE UNIQUE PAGE SCOPED USER ID
+// -------------------------
+cashbot.postGetQuery(USER.ID, { timezone: USER.TIMEZONE, gender: USER.GENDER, locale: USER.LOCALE, first_name: USER.FIRST_NAME, last_name: USER.LAST_NAME, profile_pic: USER.PROFILE_PIC, n: 3, type: 'carousel', label: 'Take a Look' }, function(err, res) {
   console.log('err: ', err);
   // returns a formatted message body
   console.log('res: ', res);
 });
 
-// get a Facebook list with
-// cashbot.ai recommendations for a specific user
+
+// send cashbot.ai user demographic information to be used to personalize recommendations
+// get a Facebook list with personalized recommendations for the user
 // returns via promises
-cashbot.facebook.get('TEST_USER', { type: 'list' })
+
+// IT IS CRITICAL YOU REPLACE USER.ATTRIBUTE WITH YOUR USER'S INFORMATION
+// USER.ID SHOULD BE THE UNIQUE PAGE SCOPED USER ID
+// -------------------------
+cashbot.postGetQuery(USER.ID, { timezone: USER.TIMEZONE, gender: USER.GENDER, locale: USER.LOCALE, first_name: USER.FIRST_NAME, last_name: USER.LAST_NAME, profile_pic: USER.PROFILE_PIC, type: 'list' })
   .then(function(res) {
     // returns a formatted message body
-    console.log(res);
-  })
-  .catch(function(err) {
-    console.log(err);
-  });
-
-// register user input for improved recommendations
-// from the Facebook webhook callback
-// returns via callback function
-cashbot.facebook.sendUserInput('TEST_USER', { n: 1, recommend: true, webhook: { /*PUT WEBHOOK RAW CONTENTS FROM request.body HERE*/ } }, function(err, res) {
-  console.log(err);
-  console.log(res);
-});
-
-// register user input for improved recommendations
-// from the Facebook webhook callback
-// returns via promises
-cashbot.facebook.sendUserInput('TEST_USER', { webhook: { /*PUT WEBHOOK RAW CONTENTS FROM request.body HERE */ } })
-  .then(function(res) {
     console.log(res);
   })
   .catch(function(err) {
@@ -78,45 +74,61 @@ Quick Start: APIs
 
 ```
 // load the cashbot.ai library
+// -------------------------
 var Cashbot = require('cashbot');
 
 // initialize the cashbot client
+// -------------------------
 var cashbot = Cashbot.init('API_KEY');
+
+// optionally print debug messages, leave debug: false if you do not want debug messages
+// -------------------------
 cashbot.setConfig({ debug: true });
 
-// get cashbot.ai recommendations for user
+
+// send cashbot.ai user demographic information to be used to personalize recommendations
+// get n=3 personalized recommendations for the user
 // returns via callback function
-cashbot.getRecommendations('TEST_USER', { n: 3 }, function(err, res) {
+
+// IT IS CRITICAL YOU REPLACE USER.ATTRIBUTE WITH YOUR USER'S INFORMATION
+// USER.ID SHOULD BE THE UNIQUE PAGE SCOPED USER ID
+// -------------------------
+cashbot.postGetQuery(USER.ID, { timezone: USER.TIMEZONE, gender: USER.GENDER, locale: USER.LOCALE, first_name: USER.FIRST_NAME, last_name: USER.LAST_NAME, profile_pic: USER.PROFILE_PIC, n: 3, format: 'api' }, function(err, res) {
   console.log('err: ', err);
+  // returns a formatted message body
   console.log('res: ', res);
 });
 
-// get cashbot.ai recommendations for user
-// returns via promise
-cashbot.getRecommendations('TEST_USER')
+
+// send cashbot.ai user demographic information to be used to personalize recommendations
+// get n=1 personalized recommendations for the user
+// returns via promises
+
+// IT IS CRITICAL YOU REPLACE USER.ATTRIBUTE WITH YOUR USER'S INFORMATION
+// USER.ID SHOULD BE THE UNIQUE PAGE SCOPED USER ID
+// -------------------------
+cashbot.postGetQuery(USER.ID, { timezone: USER.TIMEZONE, gender: USER.GENDER, locale: USER.LOCALE, first_name: USER.FIRST_NAME, last_name: USER.LAST_NAME, profile_pic: USER.PROFILE_PIC, n: 1, format: 'api' })
   .then(function(res) {
+    // returns a formatted message body
     console.log(res);
   })
   .catch(function(err) {
     console.log(err);
   });
+```
 
-// register user input for improved recommendations
-// returns via callback function
-cashbot.sendUserInput('TEST_USER', { n: 1, recommend: true, type: 'text', value: { intent: 'dummyIntent', value: 'dummy text' } }, function(err, res) {
-  console.log('err: ', err);
-  console.log('res: ', res);
-});
+userDemographics Object
+-----------
 
-// register user input for improved recommendations
-// returns via promise
-cashbot.sendUserInput('TEST_USER', { type: 'text', value: { intent: 'dummyIntent', value: 'dummy text' } })
-  .then(function(res) {
-    console.log(res);
-  })
-  .catch(function(err) {
-    console.log(err);
-  });
+```
+  required
+    timezone: signed integer, offset from GMT
+    gender: enumerated string, [ "male", "female" ]
+    locale: Facebook locale code, e.g. "en_US"
+  optional
+    first_name: string
+    last_name: string
+    profile_pic: string, URL to profile picture
 ```
 
 Tests
